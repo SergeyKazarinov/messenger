@@ -4,7 +4,6 @@
     "es2021": true
   },
   "extends": [
-    "plugin:react-hooks/recommended",
     "next/core-web-vitals",
     "airbnb-base",
     "airbnb-typescript/base"
@@ -19,9 +18,6 @@
   "plugins": [
     "import"
   ],
-  "include": [
-    "tailwind.config.js"
-  ],
   "rules": {
     "func-style": ["error", "declaration", { "allowArrowFunctions": true }],
     "semi": ["error", "always", {"omitLastInOneLineBlock": true}],
@@ -32,8 +28,5 @@
     "import/parsers": {
       "@typescript-eslint/parser": [".ts", ".tsx"]
     }
-    // "import/resolver": {
-    //   "typescript": {}
-    // }
   }
 }
