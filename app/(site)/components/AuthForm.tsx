@@ -7,6 +7,7 @@ import { FC, useCallback, useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { BsGithub, BsGoogle } from 'react-icons/bs';
 import toast from 'react-hot-toast';
+import { signIn } from 'next-auth/react';
 import AuthSocialButton from './AuthSocialButton';
 
 type TVariant = 'LOGIN' | 'REGISTER';
@@ -51,7 +52,20 @@ const AuthForm: FC<AuthFormProps> = () => {
     }
 
     if (variant === 'LOGIN') {
+      signIn('credentials', {
+        ...data,
+        redirect: false,
+      })
+        .then((callback) => {
+          if (callback?.error) {
+            toast.error('Invalid credentials');
+          }
 
+          if (callback?.ok && !callback?.error) {
+            toast.success('Logged in!');
+          }
+        })
+        .finally(() => setIsLoading(false));
     }
   };
 
