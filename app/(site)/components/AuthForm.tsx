@@ -2,8 +2,9 @@
 
 import Button from '@/app/components/Button';
 import Input from '@/app/components/input/Input';
+import axios from 'axios';
 import { FC, useCallback, useState } from 'react';
-import { useForm, FieldValues, SubmitHandler } from 'react-hook-form';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { BsGithub, BsGoogle } from 'react-icons/bs';
 import AuthSocialButton from './AuthSocialButton';
 
@@ -43,7 +44,7 @@ const AuthForm: FC<AuthFormProps> = () => {
     setIsLoading(true);
 
     if (variant === 'REGISTER') {
-
+      axios.post('/api/register', data);
     }
 
     if (variant === 'LOGIN') {
@@ -72,7 +73,7 @@ const AuthForm: FC<AuthFormProps> = () => {
             />
           )}
           <Input
-            id="Email"
+            id="email"
             label="Email address"
             type="email"
             register={register}
