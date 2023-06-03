@@ -17,7 +17,7 @@ const DesktopItem: FC<DesktopItemProps> = ({
 }) => {
   const handleClick = () => {
     if (onClick) {
-      return onClick();
+      onClick();
     }
   };
   return (
