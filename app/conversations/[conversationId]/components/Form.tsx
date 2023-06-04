@@ -2,10 +2,13 @@
 
 import useConversation from '@/app/hooks/useConversation';
 import axios from 'axios';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { HiPaperAirplane, HiPhoto } from 'react-icons/hi2';
+import * as LR from '@uploadcare/blocks';
 import MessageInput from './MessageInput';
+
+LR.registerBlocks(LR);
 
 interface FormProps {
 
@@ -22,6 +25,21 @@ const Form: FC<FormProps> = () => {
     },
   });
 
+  const uploadFile = (e: any) => {
+    axios.post('/api/messages', {
+      image: `https://ucarecdn.com/${e.detail.data[0].uuid}`,
+      conversationId,
+    });
+  };
+
+  useEffect(() => {
+    window.addEventListener('LR_UPLOAD_FINISH', uploadFile);
+
+    return () => {
+      window.removeEventListener('LR_UPLOAD_FINISH', uploadFile);
+    };
+  }, []);
+
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setValue('message', '', { shouldValidate: true });
 
@@ -30,9 +48,16 @@ const Form: FC<FormProps> = () => {
       conversationId,
     });
   };
+
   return (
     <div className="py-4 px-4 bg-white border-t flex items-center gap-2 lg:gap-4 w-full">
-      <HiPhoto size={30} className='text-sky-500'/>
+      <lr-file-uploader-regular
+        css-src="https://esm.sh/@uploadcare/blocks@0.22.3/web/file-uploader-regular.min.css"
+        ctx-name="my-uploader"
+        class="my-config"
+      >
+      </lr-file-uploader-regular>
+      {/* <HiPhoto size={30} className='text-sky-500 cursor-pointer'/> */}
       <form
         onSubmit={handleSubmit(onSubmit)}
         className='flex items-center gap-2 lg:gap-4 w-full'

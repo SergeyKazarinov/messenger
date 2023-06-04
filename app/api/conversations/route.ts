@@ -3,6 +3,7 @@ import prisma from '@/app/libs/prismadb';
 import { NextResponse } from 'next/server';
 
 export const POST = async (request: Request) => {
+  console.log(process.env.NEXTAUTH_SECRET!);
   try {
     const currentUser = await getCurrentUser();
     const body = await request.json();
