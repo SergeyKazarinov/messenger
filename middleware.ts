@@ -6,7 +6,7 @@ export default withAuth({
   },
 });
 
-export const confix = {
+export const config = {
   matcher: [
     '/users/:path*',
   ],
