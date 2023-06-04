@@ -4,7 +4,7 @@ import useConversation from '@/app/hooks/useConversation';
 import axios from 'axios';
 import { FC, useEffect } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import { HiPaperAirplane, HiPhoto } from 'react-icons/hi2';
+import { HiPaperAirplane } from 'react-icons/hi2';
 import * as LR from '@uploadcare/blocks';
 import MessageInput from './MessageInput';
 
@@ -27,7 +27,7 @@ const Form: FC<FormProps> = () => {
 
   const uploadFile = (e: any) => {
     axios.post('/api/messages', {
-      image: `https://ucarecdn.com/${e.detail.data[0].uuid}`,
+      image: `https://ucarecdn.com/${e.detail.data[0].uuid}/`,
       conversationId,
     });
   };
