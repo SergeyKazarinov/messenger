@@ -42,7 +42,6 @@ const Form: FC<FormProps> = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setValue('message', '', { shouldValidate: true });
-
     axios.post('/api/messages', {
       ...data,
       conversationId,
@@ -51,12 +50,12 @@ const Form: FC<FormProps> = () => {
 
   return (
     <div className="py-4 px-4 bg-white border-t flex items-center gap-2 lg:gap-4 w-full">
-      <lr-file-uploader-regular
+      {/* <lr-file-uploader-regular
         css-src="https://esm.sh/@uploadcare/blocks@0.22.3/web/file-uploader-regular.min.css"
         ctx-name="my-uploader"
         class="my-config"
       >
-      </lr-file-uploader-regular>
+      </lr-file-uploader-regular> */}
       {/* <HiPhoto size={30} className='text-sky-500 cursor-pointer'/> */}
       <form
         onSubmit={handleSubmit(onSubmit)}

@@ -111,7 +111,7 @@ const AuthForm: FC<AuthFormProps> = () => {
               label="name"
               register={register}
               errors={errors}
-              // disabled={isLoading}
+              disabled={isLoading}
             />
           )}
           <Input
@@ -120,7 +120,7 @@ const AuthForm: FC<AuthFormProps> = () => {
             type="email"
             register={register}
             errors={errors}
-            // disabled={isLoading}
+            disabled={isLoading}
           />
           <Input
             id="password"
@@ -128,7 +128,7 @@ const AuthForm: FC<AuthFormProps> = () => {
             type="password"
             register={register}
             errors={errors}
-            // disabled={isLoading}
+            disabled={isLoading}
           />
 
           <div>
