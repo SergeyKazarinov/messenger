@@ -6,6 +6,7 @@ import { Conversation, User } from '@prisma/client';
 import Link from 'next/link';
 import { FC, useMemo, useState } from 'react';
 import { HiChevronLeft, HiEllipsisHorizontal } from 'react-icons/hi2';
+import AvatarGroup from '@/app/components/AvatarGroup';
 import ProfileDrawer from './ProfileDrawer';
 
 interface HeaderProps {
@@ -42,7 +43,11 @@ const Header: FC<HeaderProps> = ({ conversation }) => {
           >
             <HiChevronLeft size={32}/>
           </Link>
-          <Avatar user={otherUser}/>
+          {conversation.isGroup ? (
+            <AvatarGroup users={conversation.user} />
+          ) : (
+            <Avatar user={otherUser}/>
+          )}
           <div className='flex flex-col'>
             <div>
               {conversation.name || otherUser.name}
