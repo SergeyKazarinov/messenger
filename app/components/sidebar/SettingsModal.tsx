@@ -110,7 +110,7 @@ const SettingsModal: FC<SettingsModalProps> = ({ isOpen, currentUser, onClose })
                   <lr-file-uploader-regular
                     css-src="https://esm.sh/@uploadcare/blocks@0.22.3/web/file-uploader-regular.min.css"
                     ctx-name="my-uploader"
-                    class="my-config"
+                    class="profile-config-image"
                   >
                   </lr-file-uploader-regular>
 

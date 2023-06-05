@@ -20,3 +20,16 @@ body,
   --s-accent: 100%;
   --l-accent: 61%;
 }
+
+.profile-config-image {
+  --cfg-pubkey: "e673147d5f836adc94ba";
+  --cfg-img-only: 1;
+  --cfg-multiple: 0;
+  --cfg-max-local-file-size-bytes: 3145728;
+  --cfg-use-cloud-image-editor: 1;
+  --cfg-source-list: "local, url, camera";
+  --darkmode: 0;
+  --h-accent: 223;
+  --s-accent: 100%;
+  --l-accent: 61%;
+}
