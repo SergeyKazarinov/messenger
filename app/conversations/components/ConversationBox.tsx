@@ -1,7 +1,6 @@
 'use client';
 
 import { FC, useCallback, useMemo } from 'react';
-import { Conversation, Message, User } from '@prisma/client';
 import { format } from 'date-fns';
 import { TFullConversation } from '@/app/types';
 import useOtherUser from '@/app/hooks/useOtherUser';
