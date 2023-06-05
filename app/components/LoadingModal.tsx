@@ -8,7 +8,7 @@ const LoadingModal = () => {
   console.log('asdf');
   return (
     <Transition.Root show as={Fragment}>
-      <Dialog as='div' className='relative z-50' onClose={() => { console.log('asdf') }}>
+      <Dialog as='div' className='relative z-50' onClose={() => {}}>
         <Transition.Child
           as={Fragment}
           enter='ease-out duration-300'
