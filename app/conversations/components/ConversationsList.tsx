@@ -11,7 +11,7 @@ import {
 import { User } from '@prisma/client';
 import { useSession } from 'next-auth/react';
 import { pusherClient } from '@/app/libs/pusher';
-import { find, update } from 'lodash';
+import { find } from 'lodash';
 import ConversationBox from './ConversationBox';
 import GroupChatModal from './GroupChatModal';
 
