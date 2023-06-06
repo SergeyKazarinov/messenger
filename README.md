@@ -1,6 +1,6 @@
 # Проект: Messenger
 
-<img src='public/images/Screen.jpg' width="90%" style="margin:0 auto;">
+<img src='public/images/Screen.jpg' width="100%">
 
 ## Описание:
 
@@ -29,7 +29,7 @@
 - Для Code Style используется [ESLint](https://eslint.org/) совместно с [Airbnb](https://airbnb.io/javascript/react/)
 
 
-[Ссылка на сайт](https://calculator-navy-seven.vercel.app/)
+[Ссылка на сайт](https://messenger-mu-black.vercel.app/)
 
 
 ## Stacks:
