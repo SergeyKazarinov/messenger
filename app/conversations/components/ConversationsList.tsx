@@ -67,17 +67,26 @@ const ConversationList: FC<ConversationListProps> = ({ initialItems, users }) =>
       }));
     };
 
+    const removeHandler = (conversation: TFullConversation) => {
+      setItems((current) => [...current.filter((item) => item.id !== conversation.id)]);
+      if (conversation.id === conversationId) {
+        router.push('/conversations');
+      }
+    };
+
     pusherClient.subscribe(pusherKey);
     pusherClient.bind('conversation:new', newHandler);
     pusherClient.bind('conversation:update', updateHandler);
+    pusherClient.bind('conversation:remove', removeHandler);
 
     /* eslint-disable consistent-return */
     return () => {
       pusherClient.unsubscribe(pusherKey);
       pusherClient.unbind('conversation:new', newHandler);
       pusherClient.unbind('conversation:update', updateHandler);
+      pusherClient.unbind('conversation:remove', removeHandler);
     };
-  }, [pusherKey]);
+  }, [pusherKey, conversationId, router]);
 
   return (
     <>

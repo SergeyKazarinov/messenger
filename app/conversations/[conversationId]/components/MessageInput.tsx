@@ -13,7 +13,7 @@ interface MessageInputProps {
 }
 
 const MessageInput: FC<MessageInputProps> = ({
-  placeholder, id, type, required, register, errors,
+  placeholder, id, type, required, register,
 }) => (
   <div className="relative w-full">
     <input
