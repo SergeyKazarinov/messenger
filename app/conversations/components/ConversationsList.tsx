@@ -5,8 +5,13 @@ import { TFullConversation } from '@/app/types';
 import { MdOutlineGroupAdd } from 'react-icons/md';
 import clsx from 'clsx';
 import { useRouter } from 'next/navigation';
-import { FC, useState } from 'react';
+import {
+  FC, useEffect, useMemo, useState,
+} from 'react';
 import { User } from '@prisma/client';
+import { useSession } from 'next-auth/react';
+import { pusherClient } from '@/app/libs/pusher';
+import { find } from 'lodash';
 import ConversationBox from './ConversationBox';
 import GroupChatModal from './GroupChatModal';
 
@@ -18,6 +23,7 @@ interface ConversationListProps {
 const ConversationList: FC<ConversationListProps> = ({ initialItems, users }) => {
   const [items, setItems] = useState(initialItems);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const session = useSession();
 
   const router = useRouter();
 
@@ -30,6 +36,34 @@ const ConversationList: FC<ConversationListProps> = ({ initialItems, users }) =>
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
+
+  const pusherKey = useMemo(() => session.data?.user?.email, [session.data?.user?.email]);
+
+  useEffect(() => {
+    if (!pusherKey) {
+      return;
+    }
+    pusherClient.subscribe(pusherKey);
+
+    const newHandler = (conversation: TFullConversation) => {
+      setItems((current) => {
+        if (find(current, { id: conversation.id })) {
+          return current;
+        }
+
+        return [conversation, ...current];
+      });
+    };
+
+    pusherClient.bind('conversation:new', newHandler);
+
+    /* eslint-disable consistent-return */
+    return () => {
+      pusherClient.unsubscribe(pusherKey);
+      pusherClient.unbind('conversation:new', newHandler);
+    };
+  }, [pusherKey]);
+
   return (
     <>
       <GroupChatModal
