@@ -8,6 +8,7 @@ import { FC, useMemo, useState } from 'react';
 import { HiChevronLeft, HiEllipsisHorizontal } from 'react-icons/hi2';
 import AvatarGroup from '@/app/components/AvatarGroup';
 import useActiveList from '@/app/hooks/useActiveList';
+import { AvatarTypeEnum } from '@/app/types';
 import ProfileDrawer from './ProfileDrawer';
 
 interface HeaderProps {
@@ -49,7 +50,7 @@ const Header: FC<HeaderProps> = ({ conversation }) => {
           {conversation.isGroup ? (
             <AvatarGroup users={conversation.user} />
           ) : (
-            <Avatar user={otherUser}/>
+            <Avatar user={otherUser} type={AvatarTypeEnum.HEADER}/>
           )}
           <div className='flex flex-col'>
             <div>
