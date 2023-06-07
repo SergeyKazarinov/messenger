@@ -2,7 +2,7 @@
 
 import { FC, useCallback, useMemo } from 'react';
 import { format } from 'date-fns';
-import { TFullConversation } from '@/app/types';
+import { AvatarTypeEnum, TFullConversation } from '@/app/types';
 import useOtherUser from '@/app/hooks/useOtherUser';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
@@ -80,7 +80,7 @@ const ConversationBox: FC<ConversationBoxProps> = ({ data, selected }) => {
       {data.isGroup ? (
         <AvatarGroup users={data.user} />
       ) : (
-        <Avatar user={otherUser} />
+        <Avatar user={otherUser} type={AvatarTypeEnum.CONVERSATION_BOX} />
       )}
       <div className='min-w-0 flex-1'>
         <div className='focus:outline-nove'>

@@ -9,17 +9,18 @@ interface MessageInputProps {
   type?: string;
   required?: boolean;
   register: UseFormRegister<FieldValues>;
-  errors: FieldErrors
+  errors: FieldErrors;
+  autoComplete?: string
 }
 
 const MessageInput: FC<MessageInputProps> = ({
-  placeholder, id, type, required, register,
+  placeholder, id, type, required, register, autoComplete,
 }) => (
   <div className="relative w-full">
     <input
       id={id}
       type={type}
-      autoComplete={id}
+      autoComplete={autoComplete}
       {...register(id, { required })}
       placeholder={placeholder}
       className="text-black font-light py-2 px-4 bg-neutral-100 w-full rounded-full focus:outline-none"

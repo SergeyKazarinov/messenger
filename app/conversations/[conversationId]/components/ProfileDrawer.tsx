@@ -11,6 +11,7 @@ import {
 import { IoClose, IoTrash } from 'react-icons/io5';
 import AvatarGroup from '@/app/components/AvatarGroup';
 import useActiveList from '@/app/hooks/useActiveList';
+import { AvatarTypeEnum } from '@/app/types';
 import ConfirmModal from './ConfirmModal';
 
 interface ProfileDrawerProps {
@@ -97,7 +98,7 @@ const ProfileDrawer: FC<ProfileDrawerProps> = ({ data, isOpen, onClose }) => {
                             {data.isGroup ? (
                               <AvatarGroup users={data.user} />
                             ) : (
-                              <Avatar user={otherUser}/>
+                              <Avatar user={otherUser} type={AvatarTypeEnum.PROFILE_DRAWER}/>
                             )}
                           </div>
                           <div>

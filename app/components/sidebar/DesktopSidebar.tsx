@@ -3,6 +3,7 @@
 import useRoutes from '@/app/hooks/useRoutes';
 import { FC, useState } from 'react';
 import { User } from '@prisma/client';
+import { AvatarTypeEnum } from '@/app/types';
 import DesktopItem from './DesktopItem';
 import Avatar from '../Avatar';
 import SettingsModal from './SettingsModal';
@@ -16,6 +17,10 @@ const DesktopSidebar: FC<DesktopSidebarProps> = ({ currentUser }) => {
   const [isOpen, setIsOpen] = useState(false);
   const handleClose = () => {
     setIsOpen(false);
+  };
+
+  const handleOpen = () => {
+    setIsOpen(true);
   };
 
   return (
@@ -41,8 +46,8 @@ const DesktopSidebar: FC<DesktopSidebarProps> = ({ currentUser }) => {
           </ul>
         </nav>
         <nav className='mt-4 flex flex-col justify-between items-center'>
-          <div onClick={() => setIsOpen(true)} className='cursor-pointer hover:opacity-75 transition'>
-            <Avatar user={currentUser} />
+          <div onClick={handleOpen} className='cursor-pointer hover:opacity-75 transition'>
+            <Avatar user={currentUser} type={AvatarTypeEnum.SIDEBAR} />
 
           </div>
 
